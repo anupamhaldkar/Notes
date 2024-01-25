@@ -11,7 +11,7 @@
 ### Creational 
 #### 1. Singleton
 - has only one instance and provides a global point of access to that instance.
-- Ex. - config. setting, DB connections, and logging systems.
+- Example - config. setting, DB connections, and logging systems.
 ```
 public class MySingleton {
 private static MySingleton instance = null;
@@ -47,7 +47,7 @@ class Creator {
 #### 3. Abstract Factory
 - create families of related or dependent objects without explicitly specifying their concrete classes. 
 - It takes one step further from the factory method by introducing an abstract base type for the factory itself.
-- Ex - UI components across different platforms - make abstract Component Base and call accordingly with the platform.
+- Example - UI components across different platforms - make abstract Component Base and call accordingly with the platform.
 
 Interfaces   
 ```
@@ -59,7 +59,7 @@ interface Color {
  void fill();
 }
 ```
-COncrete Classes
+Concrete Classes
 ```
 class Circle implements Shape {
   @Override
@@ -126,7 +126,7 @@ classBlueShapeFactory implements AbstractFactory {
 #### 4. Builder
 - Focuses on Separating the construction of a complex object from its representation
 - to generate different representations of the object.
-- Ex - Generation of optional parameters while using build method.
+- Example - Generation of optional parameters while using build method.
 
 
 ```
@@ -214,7 +214,7 @@ public class Client {
 #### 5. Prototype
 - creating new objects by cloning an existing object, rather than invoking a constructor.
 - newly created object are independent of the original object and can be used as needed.
-- Ex -
+- Example -
 ```
 interface Prototype {
   Prototype clone();
