@@ -31,7 +31,7 @@ class NewImageViewer {
     }
 }
 ```
-##### Adapter class to make the new image format to work with the existing format.
+##### Adapter class
 ```
 class ImageAdapter implements ImageView {
     private NewImageViewer newImageViewer;
@@ -158,4 +158,79 @@ public class Main {
 	}
 }
 ```
+
+#### 3. Composite
+- treat a collection of objects in the same manner as a single object.
+- hierarchically arranged object.
+- 3 key participant
+- 1. Component - base interface for all objects in the composition
+  2. leaf - behaviour of individual.
+  3. composite - responsible for storing child components and processing their operations.
+- Example: java.util.Collection - implemented by classes such as ArrayList, HashSet etc.
+
+##### Component interface
+```
+interface Student {
+    void showDetails();
+}
+```
+##### composite class
+```
+class Group implements Student {
+    private String name;
+    private List<Student> students;
+    public Group(String name) {
+        this.name = name;
+        this.students = new ArrayList<>();
+    }
+    public void addStudents(Student student) {
+        student.add(student);
+    }
+    @Override
+    public void showDetails() {
+        System.out.println("Group: " + name);
+        for (Student student : students) {
+            student.showDetails();
+        }
+    }
+}
+```
+##### Leaf
+```
+class StudentLeaf implements Student {
+    private String name;
+    private String class;
+    public StudentLeaf(String name, String class) {
+        this.name = name;
+        this.class = class;
+    }
+    @Override
+    public void showDetails() {
+        System.out.println("Student: " + name + ", class: " + class);
+    }
+}
+```
+
+##### Main class
+```
+public class Main {
+    public static void main(String[] args) {
+        // Create individual employees
+        Student std1 = new StudentLeaf("G Vijay", "CS");
+        Student std2 = new StudentLeaf("Kedar Jadhav", "IT");
+        Student std3 = new StudentLeaf("Tripti vaidya", "EC");
+        
+        Group group1 = new Group("Group 1");
+        group1.addStudents(std2);
+        group1.addStudents(std3);
+        Group group2 = new Group("Group 2");
+        group2.addStudents(emp1);
+        group2.addStudents(group1);
+       
+        group2.showDetails();
+    }
+}
+```
+
+  
   
