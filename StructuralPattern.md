@@ -231,6 +231,95 @@ public class Main {
     }
 }
 ```
+#### 4. Decorator
+- add extra functionality to an object by wrapping it with one or more decorator classes at run time.
+- enhances the objects capability.
+- promotes code reusability without modifying core functionalities.
+- Example: Java.io package Objects, BufferedInputStream, etc.
+
+##### Inteface
+```  
+interface Phone {
+    double cost();
+    String description();
+}
+```
+##### Concrete class
+```
+class FeaturePhone implements Phone {
+    @Override
+    public double cost() {
+        return 2000.0;
+    }
+    @Override
+    public String description() {
+        return "feature phone";
+    }
+}
+```
+##### Decorated class
+```
+abstract class PhoneDecorator implements Phone {
+    private final Phone decoratedPhone;
+    public PhoneDecorator(Phone phone) {
+        this.decoratedPhone = phone;
+    }
+    @Override
+    public double cost() {
+        return decoratedPhone.cost();
+    }
+    @Override
+    public String description() {
+        return decoratedPhone.description();
+    }
+}
+```
+##### Concrete decorated class
+
+```
+class SmartPhoneDecorator extends PhoneDecorator {
+    public SmartPhoneDecorator(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public double cost() {
+        return super.cost() + 15000.0;
+    }
+    @Override
+    public String description() {
+        return super.description() + ", smartphone";
+    }
+}
+class IphoneDecorator extends PhoneDecorator {
+    public IphoneDecorator(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public double cost() {
+        return super.cost() + 70000.0;
+    }
+    @Override
+    public String description() {
+        return super.description() + ", iPhone";
+    }
+}
+```
+
+##### Main class
+```
+public class Main {
+    public static void main(String[] args) {
+        Phone phone = new FeaturePhone();
+        
+        Phone smartPhone = new SmartPhoneDecorator(phone);
+        System.out.println("Cost: Rs:" + smartPhone.cost() + ", Description: " + smartPhone.description());
+        Phone iPhone = new IphoneDecorator(phone);
+        System.out.println("Cost: Rs:" + iPhone.cost() + ", Description: " + iPhone.description());
+    }
+}
+
+```
+
 
   
   
