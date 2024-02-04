@@ -70,7 +70,7 @@ public class Main {
 #### 2. Bridge
 - separates the main part(called abstraction) from the specific details(called implementation) so they can change independently.
 - helps to keep software flexible, adaptable, extensible
-- Example :
+- Example : JDBC API act as bridge between database connection and its implementation.
 ```
 EyeShape interface
 interface EyeShape {
