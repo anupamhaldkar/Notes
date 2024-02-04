@@ -66,3 +66,96 @@ public class Main {
 }
 
 ```
+
+#### 2. Bridge
+- separates the main part(called abstraction) from the specific details(called implementation) so they can change independently.
+- helps to keep software flexible, adaptable, extensible
+- Example :
+```
+EyeShape interface
+interface EyeShape {
+	void create();
+}
+
+interface EyeColor {
+	void addColor();
+}
+```
+##### Concrete class
+```
+class InCircle implements EyeShape {
+	@Override
+	public void create() {
+		System.out.println("Drawing InCircle");
+	}
+}
+
+
+class Square implements IShape {
+	@Override
+	public void create() {
+		System.out.println("Drawing Square");
+	}
+}
+
+class Red implements IColor {
+	@Override
+	public void addColor() {
+		System.out.println("Applying Red Color");
+	}
+}
+
+class Blue implements IColor {
+	@Override
+	public void addColor() {
+		System.out.println("Applying Blue Color");
+	}
+}
+```
+
+##### Bridge
+```
+abstract class ShapeColorBridge {
+	protected IShape shape;
+	protected IColor color;
+	public ShapeColorBridge(IShape shape, IColor color) {
+		this.shape = shape;
+		this.color = color;
+	}
+	public abstract void drawShapeWithColor();
+}
+
+class CircleBridge extends ShapeColorBridge {
+	public CircleBridge(EyeShape shape, EyeColor color) {
+		super(shape, color);
+	}
+	@Override
+	public void drawShapeWithColor() {
+		shape.create();
+		color.addColor();
+	}
+}
+
+class SquareBridge extends ShapeColorBridge {
+	public SquareBridge(EyeShape shape, EyeColor color) {
+		super(shape, color);
+	}
+	@Override
+	public void drawShapeWithColor() {
+		shape.create();
+		color.addColor();
+	}
+}
+```
+##### Main Class
+```
+public class Main {
+	public static void main(String[] args) {
+		ShapeColorBridge redCircle = new CircleBridge(new Circle(), new Red());
+		ShapeColorBridge blueSquare = new SquareBridge(new Square(), new Blue());
+		redCircle.drawShapeWithColor();
+		blueSquare.drawShapeWithColor();
+	}
+}
+```
+  
